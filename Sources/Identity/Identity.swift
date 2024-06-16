@@ -81,6 +81,7 @@ extension Identifier: CustomStringConvertible {
 
 extension Identifier: Equatable where Value.RawIdentifier: Equatable {}
 extension Identifier: Hashable where Value.RawIdentifier: Hashable {}
+extension Identifier: Sendable where Value.RawIdentifier: Sendable {}
 
 // MARK: - Codable support
 
