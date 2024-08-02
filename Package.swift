@@ -23,5 +23,6 @@ let package = Package(
             name: "IdentityTests",
             dependencies: ["Identity"]
         )
-    ]
+    ],
+    swiftLanguageVersions: [.v6]
 )
