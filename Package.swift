@@ -1,4 +1,4 @@
-// swift-tools-version:6.0
+// swift-tools-version:5.10
 
 /**
  *  Identity
@@ -23,6 +23,5 @@ let package = Package(
             name: "IdentityTests",
             dependencies: ["Identity"]
         )
-    ],
-    swiftLanguageVersions: [.v6]
+    ]
 )
