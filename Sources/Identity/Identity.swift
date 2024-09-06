@@ -28,7 +28,7 @@ public struct Identifier<Value: Identifiable> {
     public let rawValue: Value.RawIdentifier
 
     /// Initialize an instance with a raw value.
-    public init(rawValue: Value.RawIdentifier) {
+    @Sendable public init(rawValue: Value.RawIdentifier) {
         self.rawValue = rawValue
     }
 }
