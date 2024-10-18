@@ -28,7 +28,11 @@ public struct Identifier<Value: Identifiable> {
     public let rawValue: Value.RawIdentifier
 
     /// Initialize an instance with a raw value.
-    @Sendable public init(rawValue: Value.RawIdentifier) {
+    public init(rawValue: Value.RawIdentifier) {
+        self.rawValue = rawValue
+    }
+
+    @Sendable public init(rawValue: Value.RawIdentifier) where Value.RawIdentifier: Sendable {
         self.rawValue = rawValue
     }
 }
@@ -36,7 +40,8 @@ public struct Identifier<Value: Identifiable> {
 // MARK: - Integer literal support
 
 extension Identifier: ExpressibleByIntegerLiteral
-          where Value.RawIdentifier: ExpressibleByIntegerLiteral {
+    where Value.RawIdentifier: ExpressibleByIntegerLiteral
+{
     public init(integerLiteral value: Value.RawIdentifier.IntegerLiteralType) {
         rawValue = .init(integerLiteral: value)
     }
@@ -45,29 +50,32 @@ extension Identifier: ExpressibleByIntegerLiteral
 // MARK: - String literal support
 
 extension Identifier: ExpressibleByUnicodeScalarLiteral
-          where Value.RawIdentifier: ExpressibleByUnicodeScalarLiteral {
+    where Value.RawIdentifier: ExpressibleByUnicodeScalarLiteral
+{
     public init(unicodeScalarLiteral value: Value.RawIdentifier.UnicodeScalarLiteralType) {
         rawValue = .init(unicodeScalarLiteral: value)
     }
 }
 
 extension Identifier: ExpressibleByExtendedGraphemeClusterLiteral
-          where Value.RawIdentifier: ExpressibleByExtendedGraphemeClusterLiteral {
+    where Value.RawIdentifier: ExpressibleByExtendedGraphemeClusterLiteral
+{
     public init(extendedGraphemeClusterLiteral value: Value.RawIdentifier.ExtendedGraphemeClusterLiteralType) {
         rawValue = .init(extendedGraphemeClusterLiteral: value)
     }
 }
 
 extension Identifier: ExpressibleByStringLiteral
-          where Value.RawIdentifier: ExpressibleByStringLiteral {
+    where Value.RawIdentifier: ExpressibleByStringLiteral
+{
     public init(stringLiteral value: Value.RawIdentifier.StringLiteralType) {
         rawValue = .init(stringLiteral: value)
     }
 }
 
 extension Identifier: ExpressibleByStringInterpolation
-          where Value.RawIdentifier: ExpressibleByStringInterpolation,
-                Value.RawIdentifier.StringLiteralType == String {}
+    where Value.RawIdentifier: ExpressibleByStringInterpolation,
+    Value.RawIdentifier.StringLiteralType == String {}
 
 // MARK: - String conversion support
 
@@ -86,12 +94,12 @@ extension Identifier: Sendable where Value.RawIdentifier: Sendable {}
 // MARK: - Codable support
 
 extension Identifier: Codable where Value.RawIdentifier: Codable {
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         rawValue = try container.decode(Value.RawIdentifier.self)
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(rawValue)
     }

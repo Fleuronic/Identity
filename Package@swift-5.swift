@@ -1,4 +1,4 @@
-// swift-tools-version:6.0
+// swift-tools-version:5.8
 
 /**
  *  Identity
@@ -23,13 +23,12 @@ let package = Package(
             name: "IdentityTests",
             dependencies: ["Identity"]
         ),
-    ],
-    swiftLanguageModes: [.v6]
+    ]
 )
 
 for target in package.targets {
     target.swiftSettings = [
-        .enableUpcomingFeature("ExistentialAny"),
-        .enableUpcomingFeature("InternalImportsByDefault"),
+        .enableUpcomingFeature("StrictConcurrency"),
+        .enableExperimentalFeature("AccessLevelOnImport"),
     ]
 }
