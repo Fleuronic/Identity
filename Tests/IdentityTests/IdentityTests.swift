@@ -4,8 +4,8 @@
  *  Licensed under the MIT license (see LICENSE file)
  */
 
-import XCTest
 import Identity
+import XCTest
 
 final class IdentityTests: XCTestCase {
     func testStringBasedIdentifier() {
@@ -75,19 +75,4 @@ final class IdentityTests: XCTestCase {
         XCTAssertEqual(stringID.description, "An ID")
         XCTAssertEqual(intID.description, "7")
     }
-
-    func testAllTestsRunOnLinux() {
-        verifyAllTestsRunOnLinux()
-    }
-}
-
-extension IdentityTests: LinuxTestable {
-    static var allTests = [
-        ("testStringBasedIdentifier", testStringBasedIdentifier),
-        ("testIntBasedIdentifier", testIntBasedIdentifier),
-        ("testCodableIdentifier", testCodableIdentifier),
-        ("testIdentifierEncodedAsSingleValue", testIdentifierEncodedAsSingleValue),
-        ("testExpressingIdentifierUsingStringInterpolation", testExpressingIdentifierUsingStringInterpolation),
-        ("testIdentifierDescription", testIdentifierDescription)
-    ]
 }

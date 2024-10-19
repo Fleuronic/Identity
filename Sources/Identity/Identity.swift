@@ -32,9 +32,11 @@ public struct Identifier<Value: Identifiable> {
         self.rawValue = rawValue
     }
 
+	#if swift(>=5.10)
     @Sendable public init(rawValue: Value.RawIdentifier) where Value.RawIdentifier: Sendable {
         self.rawValue = rawValue
     }
+	#endif
 }
 
 // MARK: - Integer literal support
