@@ -28,15 +28,9 @@ public struct Identifier<Value: Identifiable> {
     public let rawValue: Value.RawIdentifier
 
     /// Initialize an instance with a raw value.
-    public init(rawValue: Value.RawIdentifier) {
-        self.rawValue = rawValue
-    }
-
-	#if swift(>=5.10)
     @Sendable public init(rawValue: Value.RawIdentifier) where Value.RawIdentifier: Sendable {
         self.rawValue = rawValue
     }
-	#endif
 }
 
 // MARK: - Integer literal support
