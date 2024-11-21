@@ -13,7 +13,7 @@ import Foundation
 /// defaults to String.
 public protocol Identifiable {
     /// The backing raw type of this type's identifier.
-    associatedtype RawIdentifier = String
+    associatedtype RawIdentifier: Sendable = String
     /// Shorthand type alias for this type's identifier.
     typealias ID = Identifier<Self>
     /// The ID of this instance.
